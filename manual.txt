@@ -1,0 +1,31 @@
+1. В PostgreSQL\17\data суем файл pgpass.conf и в файле postgresql.conf меняем строчку - 
+shared_preload_libraries = 'pg_stat_statements'		# (change requires restart)
+
+2. Все файлы .dll в PostgreSQL\17\lib
+
+3. Все файлы .sql и .control PostgreSQL\17\share\extension 
+
+4. Закачка модели llama через терминал:
+ollama pull llama3.2:3b
+
+5. Перезагрузка Postgres через терминал:
+net stop postgresql-x64-17
+
+net start postgresql-x64-17
+
+6.
+---Проверка подключился ли плагин:
+SELECT plugin_test();
+---Проверка собирает ли плагин json:
+SELECT plugin_get_performance_data();
+---Забирает json, отправляет в нейросеть и возвращает ответ по оптимизации:
+SELECT plugin_analyze_performance(plugin_get_performance_data());
+
+
+/*CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+CREATE EXTENSION IF NOT EXISTS dblink;
+CREATE EXTENSION IF NOT EXISTS pg_profile;
+DROP EXTENSION IF EXISTS plugin_ps CASCADE;
+CREATE EXTENSION IF NOT EXISTS plugin_ps;
+SELECT * FROM pg_extension;
+*\
