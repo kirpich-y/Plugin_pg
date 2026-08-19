@@ -5,15 +5,17 @@ shared_preload_libraries = 'pg_stat_statements'		# (change requires restart)
 
 3. Все файлы .sql и .control PostgreSQL\17\share\extension 
 
-4. Закачка модели llama через терминал:
+4. Скачать Ollama
+
+5. Закачка модели llama через терминал:
 ollama pull llama3.2:3b
 
-5. Перезагрузка Postgres через терминал:
+6. Перезагрузка Postgres через терминал:
 net stop postgresql-x64-17
 
 net start postgresql-x64-17
 
-6.
+7.
 ---Проверка подключился ли плагин:
 SELECT plugin_test();
 ---Проверка собирает ли плагин json:
